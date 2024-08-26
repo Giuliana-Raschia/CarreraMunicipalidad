@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Datos de Corredores</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
+    <link rel="stylesheet" href="./style/style.css" />
+</head>
+
+<body>
+    <a href="./index.html" class="btn__volver">Volver</a>
+    <section class="contenedor__crono">
+        <article>
+            <button id="startButton">Iniciar</button>
+            <button id="stopButton" class="hidden">Detener</button>
+            <button id="saveButton">Guardar Tiempo</button>
+        </article>
+        <article class="contenedor__tiempo__numero">
+            <input type="text" id="corredorId" placeholder="Número de Corredor" />
+
+            <div id="stopwatch">
+                <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>:<span id="milliseconds">00</span>
+            </div>
+        </article>
+    </section>
+
+    <section class="contenedor__tabla">
+        <h1>Datos de Corredores</h1>
+        <table id="corredoresTable">
+            <thead>
+                <tr id="tableHeader"></tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+    <script>
+        async function fetchCorredores() {
+            try {
+                const response = await fetch("http://127.0.0.1/corredoresTiempo.php");
+                const result = await response.json();
+
+                if (result.status === "success" && Array.isArray(result.data)) {
+                    const data = result.data;
+
+                    // Obtener la referencia a los elementos de la tabla
+                    const tableHeader = document.getElementById("tableHeader");
+                    const tableBody = document.getElementById("tableBody");
+
+                    // Limpiar tabla existente
+                    tableHeader.innerHTML = "";
+                    tableBody.innerHTML = "";
+
+                    if (data.length > 0) {
+                        // Crear encabezados de tabla
+                        const headers = Object.keys(data[0]);
+                        headers.forEach((header) => {
+                            const th = document.createElement("th");
+                            th.textContent = header;
+                            tableHeader.appendChild(th);
+                        });
+
+                        // Crear filas de tabla
+                        data.forEach((row) => {
+                            const tr = document.createElement("tr");
+                            headers.forEach((header) => {
+                                const td = document.createElement("td");
+                                td.textContent = row[header] || "No disponible"; // Manejar datos no disponibles
+                                tr.appendChild(td);
+                            });
+                            tableBody.appendChild(tr);
+                        });
+                    } else {
+                        const tr = document.createElement("tr");
+                        const td = document.createElement("td");
+                        td.colSpan = headers.length; // Asegúrate de que `headers` esté definido aquí
+                        td.textContent = "No hay datos disponibles";
+                        tr.appendChild(td);
+                        tableBody.appendChild(tr);
+                    }
+                } else {
+                    Swal.fire({
+                        title: "Error",
+                        text: "Error al cargar los datos.",
+                        icon: "error",
+                    });
+                }
+            } catch (error) {
+                console.error("Error al cargar los datos:", error);
+                Swal.fire({
+                    title: "Error",
+                    text: "Hubo un problema al cargar los datos.",
+                    icon: "error",
+                });
+            }
+        }
+
+        // Llamar a la función para cargar los datos cuando la página se carga
+        document.addEventListener("DOMContentLoaded", fetchCorredores);
+
+
+        // Variables del cronómetro
+let startTime,
+    updatedTime,
+    difference,
+    tInterval,
+    running = false;
+let hours = 0,
+    minutes = 0,
+    seconds = 0,
+    milliseconds = 0;
+
+// Función para mostrar el tiempo
+function getShowTime() {
+    updatedTime = new Date().getTime();
+    difference = updatedTime - startTime;
+    hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+    minutes = Math.floor((difference / (1000 * 60)) % 60);
+    seconds = Math.floor((difference / 1000) % 60);
+    milliseconds = Math.floor((difference % 1000) / 10);
+
+    // Formatear valores
+    hours = hours < 10 ? "0" + hours : hours;
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+    milliseconds = milliseconds < 10 ? "0" + milliseconds : milliseconds;
+
+    // Mostrar tiempo en pantalla
+    document.getElementById("hours").textContent = hours;
+    document.getElementById("minutes").textContent = minutes;
+    document.getElementById("seconds").textContent = seconds;
+    document.getElementById("milliseconds").textContent = milliseconds;
+}
+
+// Iniciar el cronómetro
+document.getElementById("startButton").addEventListener("click", () => {
+    if (!running) {
+        running = true;
+        startTime = new Date().getTime();
+        tInterval = setInterval(getShowTime, 1);
+        document.getElementById("startButton").classList.add("hidden");
+        document.getElementById("stopButton").classList.remove("hidden");
+    }
+});
+
+// Detener el cronómetro
+document.getElementById("stopButton").addEventListener("click", () => {
+    if (running) {
+        running = false;
+        clearInterval(tInterval);
+        document.getElementById("stopButton").classList.add("hidden");
+        document.getElementById("startButton").classList.remove("hidden");
+    }
+});
+
+// Guardar el tiempo
+document.getElementById("saveButton").addEventListener("click", async () => {
+    const corredorId = document.getElementById("corredorId").value;
+    if (corredorId) {
+        const time = `${hours}:${minutes}:${seconds}:${milliseconds}`;
+        try {
+            const response = await fetch("http://127.0.0.1/guardarTiempo.php", {
+                method: "POST",
+                mode: "cors",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    corredorId: corredorId,
+                    tiempo: time,
+                }),
+            });
+
+            // Verifica si la respuesta es JSON
+            const contentType = response.headers.get("Content-Type");
+            if (!contentType || !contentType.includes("application/json")) {
+                throw new Error("Respuesta del servidor no es JSON");
+            }
+
+            const result = await response.json();
+
+            if (result.status === "success") {
+                Toastify({
+                    text: `Corredor ID: ${corredorId}, Tiempo: ${time}`,
+                    duration: 3000,
+                    close: true,
+                    gravity: "top",
+                    position: "right",
+                    backgroundColor: "#4caf50",
+                }).showToast();
+
+                // Actualizar la tabla de corredores
+                fetchCorredores();
+            } else {
+                Swal.fire({
+                    title: "Error",
+                    text: result.message || "Error al guardar el tiempo.",
+                    icon: "error",
+                });
+            }
+        } catch (error) {
+            console.error("Error al guardar el tiempo:", error);
+            Swal.fire({
+                title: "Error",
+                text: "Hubo un problema al guardar el tiempo.",
+                icon: "error",
+            });
+        }
+    } else {
+        Swal.fire({
+            title: "Error",
+            text: "Por favor, ingrese un número de corredor.",
+            icon: "error",
+        });
+    }
+});
+
+// Permitir que el botón de guardar se ejecute al presionar Enter
+document.getElementById("corredorId").addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+        document.getElementById("saveButton").click();
+    }
+});
+
+    </script>
+</body>
+
+</html>

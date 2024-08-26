@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Corredores</title>
+    <link rel="stylesheet" href="./style/style.css">
+    <!-- SweetAlert2 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <a href="./index.html" class="btn__volver">Volver</a>
+    <div class="container">
+        <h1>Registro de Corredores</h1>
+        <form id="runnerForm">
+            <label for="numero">Número de Corredor:</label>
+            <input type="number" id="numero" name="numero" required>
+
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+            <label for="nombre">Apellido:</label>
+            <input type="text" id="apellido" name="apellido" required>
+
+            <label for="distancia">Distancia:</label>
+            <select id="distancia" name="distancia" required>
+                <option value="5">5 km</option>
+                <option value="10">10 km</option>
+                <option value="21">21 km</option>
+            </select>
+
+            <label for="edad">Edad:</label>
+            <input type="number" id="edad" name="edad" required>
+
+            <button type="submit" id="submitBtn">Registrar</button>
+        </form>
+        <div id="responseMessage"></div>
+    </div>
+
+    <!-- JavaScript para manejar el envío del formulario -->
+    <script src="./js/main.js"></script>
+</body>
+</html>

@@ -40,7 +40,7 @@ document.getElementById('runnerForm').addEventListener('submit', async function(
 
     try {
         // Realizar la solicitud POST al archivo PHP
-        const response = await fetch("http://127.0.0.1/process.php", {
+        const response = await fetch("https://servermunicarerra.onrender.com/process.php", {
             method: 'POST',
             mode: "cors",
             body: formData

@@ -1,6 +1,6 @@
 async function fetchCorredores() {
     try {
-        const response = await fetch("http://127.0.0.1/corredores.php");
+        const response = await fetch("https://servermunicarerra.onrender.com/corredores.php");
         const data = await response.json();
 
         if (Array.isArray(data)) {

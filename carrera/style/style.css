@@ -10,26 +10,26 @@ body {
     text-align: center;
 }
 
-.contenedor__crono{
+.contenedor__crono {
     display: flex;
-flex-direction: column;
-gap: 30px;
+    flex-direction: column;
+    gap: 30px;
 }
 
-article{
+article {
     gap: 30px;
     display: flex;
     justify-content: center;
 }
 
-.contenedor__tiempo__numero{
+.contenedor__tiempo__numero {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100%;
 }
 
-#stopwatch{
+#stopwatch {
     border: 1px solid;
     padding: 6px 10px;
     border-radius: 8px;
@@ -37,7 +37,8 @@ article{
 
 }
 
-#stopwatch,span{
+#stopwatch,
+span {
     font-size: 30px;
     font-weight: bold;
     color: #fff;
@@ -47,18 +48,24 @@ table {
     width: 100%;
     border-collapse: collapse;
 }
-table, th, td {
+
+table,
+th,
+td {
     border: 1px solid black;
 }
-th, td {
+
+th,
+td {
     padding: 8px;
     text-align: left;
 }
+
 th {
     background-color: #f2f2f2;
 }
 
-.contenedor__tabla{
+.contenedor__tabla {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
@@ -67,7 +74,7 @@ th {
     width: 100%;
 }
 
-.btn__volver{
+.btn__volver {
     position: absolute;
     text-decoration: none;
     top: 10%;
@@ -81,7 +88,7 @@ th {
     transition: all 0.2s ease;
 }
 
-.btn__volver:hover{
+.btn__volver:hover {
     scale: 1.1;
 }
 
@@ -107,14 +114,16 @@ label {
     font-weight: bold;
 }
 
-input, select {
+input,
+select {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
-    box-sizing: border-box; /* Asegura que padding y border no afecten al ancho total */
+    box-sizing: border-box;
+    /* Asegura que padding y border no afecten al ancho total */
 }
 
 button {
@@ -143,7 +152,7 @@ button:hover {
     max-width: 600px;
     margin: 50px auto;
     padding: 20px;
-    background-color:rgb(213, 255, 149);
+    background-color: rgb(213, 255, 149);
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;

@@ -40,7 +40,7 @@ document.getElementById('runnerForm').addEventListener('submit', async function(
 
     try {
         // Realizar la solicitud POST al archivo PHP
-        const response = await fetch("https://servermunicarerra.onrender.com/process.php", {
+        const response = await fetch("https://ambuvirtual.com/process.php", {
             method: 'POST',
             mode: "cors",
             body: formData

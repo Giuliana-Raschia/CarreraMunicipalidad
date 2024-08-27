@@ -1,6 +1,9 @@
 async function fetchCorredores() {
+
+const php = "https://ambuvirtual.com/corredores.php"
+
     try {
-        const response = await fetch("https://servermunicarerra.onrender.com/corredores.php");
+        const response = await fetch(php);
         const data = await response.json();
 
         if (Array.isArray(data)) {

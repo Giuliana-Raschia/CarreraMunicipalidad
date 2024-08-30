@@ -5,9 +5,9 @@ header("Access-Control-Allow-Headers: Content-Type");
 
 // Conexión a la base de datos MySQL
 $servername = "localhost";
-$username = "root";
-$password = "";
-$database = "carrera"; // Cambia esto por el nombre real de tu base de datos
+$username = "u983319120_franciscardo";
+$password = "@20Cqx#VGm";
+$database = "u983319120_carrera"; // Cambia esto por el nombre real de tu base de datos
 
 // Crear la conexión
 $conn = new mysqli($servername, $username, $password, $database);

@@ -1,30 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard de competencia de corredores</title>
-    <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="./style/style.css" />
+    <link rel="stylesheet" href="https://use.typekit.net/yaz3yra.css" />
 </head>
+
 <body>
+    <img class="img__fondo" src="./imagenes/carrera.jpg" alt="carrera" />
     <header>
-        <div class="header-logo">
-            <img src="imagenes/Deportes.jpeg" alt="Logo 1">
-        </div>
-        <div class="header-logo">
-            <img src="imagenes/Fundacion.jpeg" alt="Logo 2">
-        </div>
-        <div class="header-logo">
-            <img src="imagenes/Romi.jpeg" alt="Logo 3">
-        </div>
+        <h3>V.1.0.0</h3>
     </header>
-    <div class="dashboard">
-        <h1>Competencia de corredores</h1>
-        <h2>Bien Chido Carnal</h2>
-        <p>Bienvenido al sistema de gestión de la competencia. Aquí podrás registrar nuevos corredores y utilizarlo para rankear sus posiciones en la carrera</p>
-        <a href="./register.html" class="button">Registrar Corredor</a>
-        <a href="./tiempocorredor.html" class="button">Iniciar Carrera</a>
-        <a href="./listacorredores.html" class="button">Ver Corredores</a>
-    </div>
+    <div class="img__fondo"></div>
+    <a class="direc__deportes" href="https://roqueperez.gob.ar/tags/deportes" target="_blank" rel="noopener noreferrer">
+        <img src="./imagenes/DeportesTransparente.png" alt="Roque Pérez Deportes" />
+        <!-- Cambié Pérez para usar el acento -->
+    </a>
+    <a class="direc__deportes" direc="2" href="https://fundacionsonrie.org.ar/" target="_blank" rel="noopener noreferrer">
+        <img src="./imagenes/logo.svg" alt="Fundación Sonríe" />
+    </a>
+    <a class="direc__deportes" direc="3" href="https://www.instagram.com/sumatexromi" target="_blank" rel="noopener noreferrer">
+        <img src="./imagenes/Romi.jpeg" alt="sumate x romi" />
+    </a>
+    <main>
+        <h1>Competencia de Corredores</h1>
+        <!-- Cambié la 'c' de 'corredores' a mayúscula -->
+        <h2>
+            Bienvenido al sistema de gestión de la competencia. Aquí podrás
+            registrar nuevos corredores y rankear sus posiciones en la carrera.
+        </h2>
+        <section class="contenedor__btns">
+            <a href="./register.html" class="button">
+                <p>Registrar Corredor</p>
+            </a>
+            <a href="./tiempocorredor.html" class="button">
+                <p>Iniciar Carrera</p>
+            </a>
+            <a href="./listacorredores.html" class="button">
+                <p>Ver Corredores</p>
+            </a>
+            <a href="./ranking.html" class="button">
+                <p>Ver Ranking</p>
+            </a>
+        </section>
+    </main>
 </body>
+
 </html>

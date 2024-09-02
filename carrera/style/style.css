@@ -4,8 +4,8 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
-    height: 100vh;
+    align-items: center;
+    min-height: 100vh;
     margin: 0;
     text-align: center;
 }
@@ -132,6 +132,11 @@ th {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     max-width: 1000px;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
 }
 
 .btn__volver {
@@ -159,6 +164,12 @@ th {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     max-width: 400px;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
 }
 
 main {
@@ -180,12 +191,12 @@ h1 {
 }
 
 h2 {
-    text-align: start;
+   /* text-align: start; */
     margin-bottom: 20px;
     font-size: 20px;
     color: #333;
-    width: 600px;
-    margin-left: 40px;
+   /* width: 600px;
+     margin-left: 40px; */
     font-family: "darkmode-on", sans-serif;
     font-weight: 600;
     font-style: normal;
@@ -271,7 +282,7 @@ select {
     /* Asegura que padding y border no afecten al ancho total */
 }
 
-/* button {
+ button {
   width: 100%;
   padding: 10px;
   background-color: #28a745;
@@ -284,7 +295,7 @@ select {
 
 button:hover {
   background-color: #218838;
-} */
+} 
 
 #responseMessage {
     margin-top: 15px;

@@ -24,14 +24,16 @@ SELECT
     c.id AS `Número de Corredor`,
     CONCAT(c.nombre, ' ', c.apellido) AS `Nombre Completo`,
     c.edad AS `Edad`,
-    CONCAT(re.rango, ' - ', k.distancia_km, ' KM') AS `Categoria`
+    CONCAT(re.rango, ' - ', k.distancia_km, ' KM') AS `Categoría`,
+    c.sexo AS `Sexo`
 FROM corredor c
 INNER JOIN kilometros k ON c.distancia = k.id
 INNER JOIN categoria cat ON k.id = cat.kilometros_id
 INNER JOIN rango_edad re ON cat.rango_edad_id = re.id
-GROUP BY c.id, c.nombre, c.apellido, c.edad, k.distancia_km
-
+INNER JOIN sexo s ON c.sexo_id = s.id
+GROUP BY c.id, c.nombre, c.apellido, c.edad, k.distancia_km, c.sexo
 ";
+
 
 // Ejecutar la consulta
 $result = $conn->query($query);

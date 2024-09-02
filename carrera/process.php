@@ -24,6 +24,7 @@ $nombre = $_POST['nombre'];
 $apellido = $_POST['apellido'];
 $distancia = $_POST['distancia']; // Distancia en km proporcionada por el usuario
 $edad = $_POST['edad'];
+$sexo = $_POST['sexo'];
 
 // Verificar si el ID ya existe en la tabla `corredor`
 $checkIdQuery = "SELECT id FROM corredor WHERE id = ?";
@@ -112,9 +113,10 @@ if (!$found) {
 }
 
 // Insertar los datos en la tabla `corredor`
-$insertCorredorQuery = "INSERT INTO corredor (id, nombre, apellido, distancia, edad, categoria) VALUES (?, ?, ?, ?, ?, ?)";
+$insertCorredorQuery = "INSERT INTO corredor (id, nombre, apellido, distancia, edad, categoria, sexo) VALUES (?, ?, ?, ?, ?, ?, ?)";
 $stmt = $conn->prepare($insertCorredorQuery);
-$stmt->bind_param("issiii", $id, $nombre, $apellido, $kilometros_id, $edad, $categoria_id);
+$stmt->bind_param("issiiis", $id, $nombre, $apellido, $kilometros_id, $edad, $categoria_id, $sexo);
+
 
 if ($stmt->execute()) {
     echo json_encode(['status' => 'success', 'message' => 'Corredor registrado exitosamente.']);

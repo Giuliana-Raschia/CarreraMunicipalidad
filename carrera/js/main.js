@@ -20,6 +20,8 @@ document.getElementById('runnerForm').addEventListener('submit', async function(
     const apellido = document.getElementById('apellido').value;
     const distancia = document.getElementById('distancia').value;
     const edad = document.getElementById('edad').value;
+    const sexo = document.getElementById('sexo').value;
+
 
     // Crear un objeto FormData para enviar los datos
     const formData = new FormData();
@@ -28,6 +30,8 @@ document.getElementById('runnerForm').addEventListener('submit', async function(
     formData.append('apellido', apellido);
     formData.append('distancia', distancia);
     formData.append('edad', edad);
+    formData.append('sexo', sexo);
+
 
     // Definir mensajes de error según el código de error recibido
     const errorMessages = {

@@ -22,7 +22,6 @@ document.getElementById('runnerForm').addEventListener('submit', async function(
     const edad = document.getElementById('edad').value;
     const sexo = document.getElementById('sexo').value;
 
-
     // Crear un objeto FormData para enviar los datos
     const formData = new FormData();
     formData.append('id', numero);
@@ -31,7 +30,6 @@ document.getElementById('runnerForm').addEventListener('submit', async function(
     formData.append('distancia', distancia);
     formData.append('edad', edad);
     formData.append('sexo', sexo);
-
 
     // Definir mensajes de error según el código de error recibido
     const errorMessages = {
@@ -46,9 +44,14 @@ document.getElementById('runnerForm').addEventListener('submit', async function(
         // Realizar la solicitud POST al archivo PHP
         const response = await fetch("https://ambuvirtual.com/process.php", {
             method: 'POST',
-            mode: "cors",
+            mode: 'cors',
             body: formData
         });
+
+        // Verificar si la respuesta es exitosa
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
 
         // Parsear la respuesta JSON
         const result = await response.json();

@@ -87,3 +87,73 @@ document.getElementById('runnerForm').addEventListener('submit', async function(
         submitBtn.disabled = false;
     }
 });
+
+// RANKING
+const sexoSelect = document.getElementById('sexo');
+const categoriaSelect = document.getElementById('categoria');
+const edadMinInput = document.getElementById('edad_min');
+const edadMaxInput = document.getElementById('edad_max');
+const rankingTable = document.getElementById('ranking-table');
+
+// Función para cargar el ranking
+async function loadRanking() {
+    try {
+        const response = await fetch('https://ambuvirtual.com/corredores.php', {
+            method: 'POST',
+            mode: 'cors',
+            body: new URLSearchParams({
+                accion: 'ranking',
+                sexo: sexoSelect.value,
+                categoria: categoriaSelect.value,
+                edad_min: edadMinInput.value,
+                edad_max: edadMaxInput.value
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        displayRanking(data);
+    } catch (error) {
+        console.error('Error al cargar el ranking:', error);
+        Swal.fire({
+            title: 'Error',
+            text: 'Hubo un problema al cargar el ranking. Por favor, inténtelo de nuevo.',
+            icon: 'error'
+        });
+    }
+}
+
+// Función para mostrar el ranking en la tabla
+function displayRanking(data) {
+    rankingTable.innerHTML = ''; // Limpiar tabla actual
+
+    if (data.length === 0) {
+        rankingTable.innerHTML = '<tr><td colspan="6">No se encontraron corredores.</td></tr>';
+        return;
+    }
+
+    data.forEach((item, index) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${index + 1}</td>
+            <td>${item['Número de Corredor']}</td>
+            <td>${item['Nombre Completo']}</td>
+            <td>${item['Edad']}</td>
+            <td>${item['Categoría']}</td>
+            <td>${item['Tiempo']}</td>
+        `;
+        rankingTable.appendChild(row);
+    });
+}
+
+// Evento para cuando se envíe el formulario de filtros
+document.getElementById('filter-form').addEventListener('submit', function (event) {
+    event.preventDefault(); // Evitar el envío del formulario
+    loadRanking();
+});
+
+// Cargar el ranking por defecto al cargar la página
+loadRanking();

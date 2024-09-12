@@ -4,8 +4,8 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    align-items: flex-start;
+    height: 100vh;
     margin: 0;
     text-align: center;
 }
@@ -72,6 +72,10 @@ body {
 }
 
 .contenedor__crono {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -104,6 +108,22 @@ span {
     color: #fff;
 }
 
+.contenedor__tabla {
+    position: absolute;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 1000px;
+    height: 400px; /* Alto fijo de 600px */
+    width: 100%;
+    left: 0;
+    top: 0;
+    transform: translate(20%, 50%); 
+    overflow: auto;
+}
+
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -125,21 +145,12 @@ th {
     background-color: #f2f2f2;
 }
 
-.contenedor__tabla {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 1000px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-}
+
 
 .btn__volver {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: absolute;
     text-decoration: none;
     top: 10%;
@@ -151,6 +162,18 @@ th {
     color: #fff;
     font-weight: bold;
     transition: all 0.2s ease;
+    gap: 4px;
+    
+}
+
+.btn__volver > svg{
+    stroke: #fff;
+    width: 30px;
+    height: 30px;
+    stroke-width: 1.5;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
 
 .btn__volver:hover {
@@ -164,22 +187,18 @@ th {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     max-width: 400px;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-
 }
 
 main {
     display: flex;
+    width: 100%;
+    position: relative;
     flex-direction: column;
 }
 
 h1 {
-    text-align: center;
-    margin-bottom: 20px;
+    text-align: start;
+    margin-bottom: 10px;
     font-size: 30px;
     color: #333;
     font-style: normal;
@@ -187,16 +206,16 @@ h1 {
     font-family: "sofachrome", sans-serif;
     font-weight: 500;
     font-style: italic;
-    margin-top: 30px;
+    margin-top: 70px;
 }
 
 h2 {
-   /* text-align: start; */
+    text-align: start;
     margin-bottom: 20px;
     font-size: 20px;
     color: #333;
-   /* width: 600px;
-     margin-left: 40px; */
+    width: 600px;
+    margin-left: 40px;
     font-family: "darkmode-on", sans-serif;
     font-weight: 600;
     font-style: normal;
@@ -264,39 +283,6 @@ h3 {
     margin-left: 30px;
 }
 
-label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-}
-
-input,
-select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    box-sizing: border-box;
-    /* Asegura que padding y border no afecten al ancho total */
-}
-
- button {
-  width: 100%;
-  padding: 10px;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-button:hover {
-  background-color: #218838;
-} 
-
 #responseMessage {
     margin-top: 15px;
     font-weight: bold;
@@ -315,6 +301,7 @@ header {
     z-index: 1000;
     top: 0;
     position: fixed;
+    height: 60px;
 }
 
 .header-logo {
@@ -343,3 +330,63 @@ p {
     margin-bottom: 1.5em;
     color: #666;
 }
+
+/* Register.htmml */
+
+#runnerForm{
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 60%;
+}
+
+.flex{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: relative;
+}
+
+label {
+    position: absolute;
+    font-family: "sofachrome", sans-serif;
+    font-weight: bold;
+    font-style: italic;
+    bottom: 22%;
+    font-size: 11px;
+    margin-left: 30px;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #3333335b;
+    background-color: transparent;
+    font-size: 16px;
+    box-sizing: border-box;
+    height: 65px;
+    margin-left: 20px;
+    font-family: "darkmode-on", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+/* Ocultar las flechas y el control nativo en navegadores modernos */
+input[type="number"] {
+    -moz-appearance: textfield; /* Firefox */
+    appearance: textfield; /* Otros navegadores */
+  }
+  
+  /* Opcional: Estilo para el borde del input */
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  

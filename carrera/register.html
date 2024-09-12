@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <title>Registro de Corredores</title>
@@ -9,42 +10,85 @@
     <!-- SweetAlert2 CDN -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
+
 <body>
-    <a href="./index.html" class="btn__volver">Volver</a>
-    <div class="container">
+    <img class="img__fondo" src="./imagenes/carrera.jpg" alt="carrera" />
+    <header>
+        <h3>V.1.0.0</h3>
+        <a href="./index.html" class="btn__volver">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M13 14l-4 -4l4 -4" />
+                <path d="M8 14l-4 -4l4 -4" />
+                <path d="M9 10h7a4 4 0 1 1 0 8h-1" />
+            </svg>
+            Volver
+        </a>
+    </header>
+    <div class="img__fondo"></div>
+    <a class="direc__deportes" href="https://roqueperez.gob.ar/tags/deportes" target="_blank" rel="noopener noreferrer">
+        <img src="./imagenes/DeportesTransparente.png" alt="Roque Pérez Deportes" />
+        <!-- Cambié Pérez para usar el acento -->
+    </a>
+    <a class="direc__deportes" direc="2" href="https://fundacionsonrie.org.ar/" target="_blank"
+        rel="noopener noreferrer">
+        <img src="./imagenes/logo.svg" alt="Fundación Sonríe" />
+    </a>
+    <a class="direc__deportes" direc="3" href="https://www.instagram.com/sumatexromi" target="_blank"
+        rel="noopener noreferrer">
+        <img src="./imagenes/Romi.jpeg" alt="sumate x romi" />
+    </a>
+    <main>
         <h1>Registro de Corredores</h1>
         <form id="runnerForm">
-            <label for="numero">Número de Corredor:</label>
-            <input type="number" id="numero" name="numero" required>
-
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" required>
-            <label for="nombre">Apellido:</label>
-            <input type="text" id="apellido" name="apellido" required>
-
-            <label for="distancia">Distancia:</label>
-            <select id="distancia" name="distancia" required>
-                <option value="5">5 km</option>
-                <option value="10">10 km</option>
-                <option value="21">21 km</option>
-            </select>
-
-            <label for="edad">Edad:</label>
-            <input type="number" id="edad" name="edad" required>
-
-            <label for="sexo">Sexo:</label>
-            <select id="sexo" name="sexo" required>
-            <option value="F">F</option>
-            <option value="M">M</option>
-            </select>
-
-
-        <button type="submit" id="submitBtn">Registrar</button>
+            <div class="flex">
+                <label for="numero">Número de Corredor</label>
+                <input type="number" id="numero" name="numero" required />
+            </div>
+            <div class="flex">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" name="nombre" required />
+            </div>
+            <div class="flex">
+                <label for="nombre">Apellido</label>
+                <input type="text" id="apellido" name="apellido" required />
+            </div>
+            <div class="flex">
+                <label for="edad">Edad</label>
+                <input type="number" id="edad" name="edad" required />
+            </div>
+            <div class="flex">
+                <label for="sexo">Sexo</label>
+                <select id="sexo" name="sexo" required>
+                    <option value="F">F</option>
+                    <option value="M">M</option>
+                </select>
+            </div>
+            <div class="flex">
+                <label for="distancia">Distancia</label>
+                <select id="distancia" name="distancia" required>
+                    <option value="5">5 km</option>
+                    <option value="10">10 km</option>
+                    <option value="21">21 km</option>
+                </select>
+            </div>
+            <button type="submit" id="submitBtn">Registrar</button>
         </form>
-        <div id="responseMessage"></div>
-    </div>
+    </main>
 
     <!-- JavaScript para manejar el envío del formulario -->
     <script src="./js/main.js"></script>
+    <script>
+        document.querySelectorAll('input[type="number"]').forEach(input => {
+  input.addEventListener('keydown', function(event) {
+    // Prevenir el incremento/decremento con las teclas de flechas arriba/abajo
+    if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+      event.preventDefault();
+    }
+  });
+});
+
+    </script>
 </body>
+
 </html>

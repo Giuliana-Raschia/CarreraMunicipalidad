@@ -1,6 +1,5 @@
 async function fetchCorredores() {
-
-const php = "https://ambuvirtual.com/corredores.php"
+    const php = "https://ambuvirtual.com/corredores.php";
 
     try {
         const response = await fetch(php);
@@ -15,7 +14,7 @@ const php = "https://ambuvirtual.com/corredores.php"
             tableHeader.innerHTML = "";
             tableBody.innerHTML = "";
 
-            if (data.length > 0) {
+            if (data.length > 0) {s
                 // Crear encabezados de tabla
                 const headers = Object.keys(data[0]);
                 headers.forEach((header) => {

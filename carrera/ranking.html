@@ -24,18 +24,18 @@
 
     <!-- Formulario para filtrar corredores -->
     <form id="rankingForm">
-      <label for="sexo">Sexo:</label>
+      <label for="sexo"></label>
       <select id="sexo" name="sexo">
         <option value="F">Femenino</option>
         <option value="M">Masculino</option>
       </select>
 
-      <label for="categoria">Categoría:</label>
+      <label for="categoria"></label>
       <select id="categoria" name="categoria">
         <option value="">Ninguna</option>
       </select>
       
-      <label for="categoriaG">Categoría General:</label>
+      <label for="categoriaG"></label>
       <select id="categoriaG" name="categoriaG">
         <option value="">Ninguna</option>
         <option value="1">5 km General</option>
@@ -43,11 +43,11 @@
         <option value="3">21 km General</option>
       </select>
 
-      <button type="submit">Filtrar</button>
+      <button class="ranking__button" type="submit">Filtrar</button>
     </form>
 
     <!-- Tabla donde se mostrarán los datos de corredores -->
-    <section class="contenedor__tabla">
+    <section class="contenedor__ranking">
       <h1>Datos de Corredores</h1>
       <table id="corredoresTable">
         <thead>

@@ -186,23 +186,23 @@ th {
     text-align: center;
     text-decoration: none;
     top: 20%;
-    left: 3%;
+    left: 1%;
     padding: 4px 8px;
     border-radius: 8px;
     color: #ffffff;
-    text-shadow: 
-    -2px -2px 0 #000,  /* Sombra superior izquierda (negro) */
-    2px -2px 0 #000,   /* Sombra superior derecha (negro) */
-    -2px 2px 0 #000,   /* Sombra inferior izquierda (negro) */
-    2px 2px 0 #000;    /* Sombra inferior derecha (negro) */
+    text-shadow: 0 0 10px #000;
     font-weight: bold;
     transition: all 0.2s ease;
     font-family: "sofachrome", sans-serif;
     font-weight: bold;
     font-style: italic;
-    /* background: linear-gradient(to right,
-    rgba(255, 255, 255, 0) 1%,
-    rgb(255, 255, 255)); */
+    font-size: 20px;
+    text-shadow:
+        3px 3px 0 #000,
+      -1px -1px 0 #000,  
+       1px -1px 0 #000,
+       -1px 1px 0 #000,
+        1px 1px 0 #000;
 }
 
 .btn__volver > img{
@@ -213,7 +213,7 @@ th {
     width: 100px;
     z-index: -1;
     border-radius: 50%;
-    opacity: 0.6;
+    opacity: 0.8;
 }
 
 .btn__volver:hover {

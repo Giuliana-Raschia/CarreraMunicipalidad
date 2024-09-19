@@ -183,32 +183,41 @@ th {
     align-items: center;
     justify-content: center;
     position: absolute;
+    text-align: center;
     text-decoration: none;
-    top: 10%;
-    left: 5%;
-    padding: 8px 10px;
-    border: 1px solid;
+    top: 20%;
+    left: 3%;
+    padding: 4px 8px;
     border-radius: 8px;
-    background-color: #333;
-    color: #fff;
+    color: #ffffff;
+    text-shadow: 
+    -2px -2px 0 #000,  /* Sombra superior izquierda (negro) */
+    2px -2px 0 #000,   /* Sombra superior derecha (negro) */
+    -2px 2px 0 #000,   /* Sombra inferior izquierda (negro) */
+    2px 2px 0 #000;    /* Sombra inferior derecha (negro) */
     font-weight: bold;
     transition: all 0.2s ease;
-    gap: 4px;
-    
+    font-family: "sofachrome", sans-serif;
+    font-weight: bold;
+    font-style: italic;
+    /* background: linear-gradient(to right,
+    rgba(255, 255, 255, 0) 1%,
+    rgb(255, 255, 255)); */
 }
 
-.btn__volver > svg{
-    stroke: #fff;
-    width: 30px;
-    height: 30px;
-    stroke-width: 1.5;
-    fill: none;
-    stroke-linecap: round;
-    stroke-linejoin: round;
+.btn__volver > img{
+    rotate: 90deg;
+    height: 200px;
+    object-fit: contain;
+    position: absolute;
+    width: 100px;
+    z-index: -1;
+    border-radius: 50%;
+    opacity: 0.6;
 }
 
 .btn__volver:hover {
-    scale: 1.1;
+    scale: 1.03;
 }
 
 .container {

@@ -349,7 +349,7 @@ form > article {
 } */
 
 .ranking__button {
-    width: 100%;
+    width: 30%;
     padding: 10px;
     margin-left: 20px;
     font-family: "darkmode-on", sans-serif;
@@ -367,19 +367,48 @@ form > article {
 }
 
 .contenedor__ranking {
-    position: absolute;
+    /*position: absolute; */
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     max-width: 1000px;
-    height: 400px;
-    width: 100%;
-    left: 25%;
-    top: 150px;
-    transform: translate(0%, 0%);
+    height: auto;
+    width: 90%;
+    margin-left: 30px;
+    margin-right: auto;
+    margin-top: 20px;
     overflow: auto;
 }
+
+.contenedor__ranking .h1 {
+    top:10px;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Centrar los elementos a la izquierda */
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.selects-container {
+    display: flex;
+    gap: 10px; 
+    justify-content: flex-start; 
+    margin-bottom: 20px; 
+    margin-top: 0px;
+}
+
+.selects-container select {
+    width: 250px; 
+    max-width: 100%; 
+    padding: 8px; 
+    margin-bottom: 15px; 
+    font-size: 16px;
+  }
+
 
 /* register.html */
 

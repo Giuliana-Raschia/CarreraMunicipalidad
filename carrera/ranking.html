@@ -7,51 +7,62 @@
   <title>Ranking de Corredores</title>
   <link rel="stylesheet" href="./style/style.css" />
   <link rel="stylesheet" href="https://use.typekit.net/yaz3yra.css" />
-
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
 </head>
 
 <body>
   <header>
     <h3>V.1.0.0</h3>
     <a href="./index.html" class="btn__volver">
-        <img src="./imagenes/huella.png" alt="">
-        Volver
+      <img src="./imagenes/huella.png" alt="" />
+      Volver
     </a>
-</header>
-  <h1>Ranking de Corredores</h1>
+  </header>
+  <div page="ranking" class="img__fondo"></div>
+  <a class="direc__deportes" href="https://roqueperez.gob.ar/tags/deportes" target="_blank" rel="noopener noreferrer">
+    <img src="./imagenes/DeportesTransparente.png" alt="Roque Pérez Deportes" />
+  </a>
+  <a class="direc__deportes" direc="2" href="https://fundacionsonrie.org.ar/" target="_blank" rel="noopener noreferrer">
+    <img src="./imagenes/logo.svg" alt="Fundación Sonríe" />
+  </a>
+  <a class="direc__deportes" direc="3" href="https://www.instagram.com/sumatexromi" target="_blank"
+    rel="noopener noreferrer">
+    <img src="./imagenes/Romi.jpeg" alt="sumate x romi" />
+  </a>
 
-  <!-- Formulario para filtrar corredores -->
-  <form id="rankingForm" class="form-container">
-    <div class="selects-container">
-    <label for="sexo"></label>
-    <select id="sexo" name="sexo">
-      <option value="" disabled selected>Sexo</option>
-      <option value="F">Femenino</option>
-      <option value="M">Masculino</option>
-    </select>
+  <h1>Datos de Corredores</h1>
 
-    <label for="categoria"></label>
-    <select id="categoria" name="categoria">
-      <option value="" disabled selected>Categoría</option>
-      <option value="">Ninguna</option>
-    </select>
+  <section class="contenedor__filtros">
+    <form class="filtros__form" id="rankingForm">
+      <div class="flex">
+        <label for="sexo">Sexo</label>
+        <select id="sexo" name="sexo" required>
+          <option value="" selected>Ninguna</option>
+          <option value="F">Femenino</option>
+          <option value="M">Masculino</option>
+        </select>
+      </div>
+      <div class="flex">
+        <label for="categoria">Categoría</label>
+        <select id="categoria" name="categoria">
+          <option value="" disabled selected>Ninguna</option>
+        </select>
+      </div>
+      <div class="flex">
+        <label for="categoriaG">Categorías generales</label>
+        <select id="categoriaG" name="categoriaG">
+          <option value="">Ninguna</option>
+          <option value="1">5 km General</option>
+          <option value="2">10 km General</option>
+          <option value="3">21 km General</option>
+        </select>
+      </div>
+      <button type="submit" class="btn__filtros">Filtrar</button>
+    </form>
+  </section>
 
-    <label for="categoriaG"></label>
-    <select id="categoriaG" name="categoriaG">
-      <option value="" disabled selected>Categorias generales</option>
-      <option value="">Ninguna</option>
-      <option value="1">5 km General</option>
-      <option value="2">10 km General</option>
-      <option value="3">21 km General</option>
-    </select>
-
-    <button class="ranking__button" type="submit">Filtrar</button>
-  </div>
-  </form>
-
-  <!-- Tabla donde se mostrarán los datos de corredores -->
-  <section class="contenedor__ranking">
-    <h1>Datos de Corredores</h1>
+  <h4>Ranking:</h4>
+  <section tabla="ranking" class="contenedor__tabla">
     <table id="corredoresTable">
       <thead>
         <tr id="tableHeader"></tr>
@@ -60,9 +71,30 @@
     </table>
   </section>
 
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   <script>
-    // Función para obtener las categorías desde PHP
+    function mostrarToast(mensaje, tipo = "info") {
+      let backgroundColor;
+      switch (tipo) {
+        case "success":
+          backgroundColor = "#4CAF50";
+          break;
+        case "error":
+          backgroundColor = "#F44336";
+          break;
+        default:
+          backgroundColor = "#2196F3";
+      }
+      Toastify({
+        text: mensaje,
+        duration: 3000,
+        close: true,
+        gravity: "top",
+        position: "right",
+        backgroundColor: backgroundColor,
+      }).showToast();
+    }
+
     async function obtenerCategorias() {
       try {
         const response = await fetch(
@@ -79,11 +111,10 @@
           categoriaSelect.appendChild(option);
         });
       } catch (error) {
-        console.error("Error al obtener las categorías:", error);
+        mostrarToast("Error al obtener las categorías.", "error");
       }
     }
 
-    // Función para enviar los datos del formulario y obtener los corredores
     async function enviarFormulario(event) {
       event.preventDefault();
 
@@ -97,43 +128,28 @@
           body: formData,
         });
 
-        // Verifica la respuesta como texto antes de intentar parsear JSON
         const textResponse = await response.text();
 
-        // Si la respuesta no es JSON, muestra el texto para depuración
         try {
           const result = JSON.parse(textResponse);
 
           if (result.error) {
-            console.error("Error en el servidor:", result.error);
-            Swal.fire({
-              title: "Error",
-              text: result.error,
-              icon: "error",
-            });
+            mostrarToast(result.error, "error");
           } else {
-            console.log("Datos recibidos del servidor:", result);
+            mostrarToast("Datos recibidos correctamente.", "success");
             mostrarTabla(result);
           }
         } catch (jsonError) {
-          console.error("Error al parsear JSON:", textResponse);
-          Swal.fire({
-            title: "Error",
-            text: "Error al parsear la respuesta del servidor.",
-            icon: "error",
-          });
+          mostrarToast(
+            "Error al parsear la respuesta del servidor.",
+            "error"
+          );
         }
       } catch (error) {
-        console.error("Error al enviar los datos:", error);
-        Swal.fire({
-          title: "Error",
-          text: error.message,
-          icon: "error",
-        });
+        mostrarToast("Error al enviar los datos: " + error.message, "error");
       }
     }
 
-    // Función para mostrar los datos en la tabla
     function mostrarTabla(data) {
       const tableHeader = document.getElementById("tableHeader");
       const tableBody = document.getElementById("tableBody");
@@ -141,11 +157,11 @@
       tableHeader.innerHTML = "";
       tableBody.innerHTML = "";
 
-      // Si no hay datos, mostrar mensaje en la tabla
       if (Array.isArray(data) && data.length === 0) {
+        mostrarToast("No hay datos disponibles para mostrar.", "info");
         const tr = document.createElement("tr");
         const td = document.createElement("td");
-        td.colSpan = 6; // Ajusta este número según el número de columnas
+        td.colSpan = 6;
         td.textContent = "No hay datos disponibles";
         tr.appendChild(td);
         tableBody.appendChild(tr);
@@ -172,10 +188,8 @@
       }
     }
 
-    // Cargar las categorías cuando la página se carga
     window.onload = obtenerCategorias;
 
-    // Enviar el formulario para filtrar corredores
     document
       .getElementById("rankingForm")
       .addEventListener("submit", enviarFormulario);

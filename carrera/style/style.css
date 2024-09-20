@@ -30,8 +30,6 @@ body {
     background-repeat: no-repeat;
 }
 
-
-
 .img__fondo::before {
     content: "";
     position: absolute;
@@ -154,16 +152,16 @@ span {
     left: 1%;
     padding: 4px 8px;
     border-radius: 8px;
-    color: #ffffff;
-    text-shadow: 0 0 10px #000;
+    color: #000;
+    text-shadow: 0 0 10px #fff;
     font-weight: bold;
     transition: all 0.2s ease;
     font-family: "sofachrome", sans-serif;
     font-weight: bold;
     font-style: italic;
     font-size: 20px;
-    text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000,
-        -1px 1px 0 #000, 1px 1px 0 #000;
+    text-shadow: 3px 3px 0 #fff, -1px -1px 0 #fff, 1px -1px 0 #fff,
+        -1px 1px 0 #fff, 1px 1px 0 #fff;
 }
 
 .btn__volver>img {
@@ -210,6 +208,7 @@ h1 {
     margin-top: 70px;
 }
 
+
 h2 {
     text-align: start;
     margin-bottom: 20px;
@@ -230,6 +229,19 @@ h3 {
     font-family: "darkmode-on", sans-serif;
     font-weight: bold;
     font-style: normal;
+}
+
+h4 {
+    text-align: start;
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: #333;
+    font-style: normal;
+    margin-left: 40px;
+    font-family: "sofachrome", sans-serif;
+    font-weight: 500;
+    font-style: italic;
+    margin-top: 70px;
 }
 
 .contenedor__btns {
@@ -331,59 +343,7 @@ p {
     color: #666;
 }
 
-/* form {
-    flex-wrap: wrap;
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    padding: 10px;
-    width: 100%; 
-    margin-left: 40px;
-    position: relative;
-}
 
-form > article {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-} */
-
-.ranking__button {
-    width: 30%;
-    padding: 10px;
-    margin-left: 20px;
-    font-family: "darkmode-on", sans-serif;
-    font-weight: 600;
-    font-size: 16px;
-    border: 1px solid #3333335b;
-    background-color: #007bff;
-    color: #fff;
-    cursor: pointer;
-    height: 65px;
-}
-
-.ranking__button:hover {
-    background-color: #0056b3;
-}
-
-.contenedor__ranking {
-    /*position: absolute; */
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 1000px;
-    height: auto;
-    width: 90%;
-    margin-left: 30px;
-    margin-right: auto;
-    margin-top: 20px;
-    overflow: auto;
-}
-
-.contenedor__ranking .h1 {
-    top:10px;
-}
 
 .form-container {
     display: flex;
@@ -408,7 +368,6 @@ form > article {
     margin-bottom: 15px; 
     font-size: 16px;
   }
-
 
 /* register.html */
 
@@ -586,3 +545,61 @@ thead > tr{
     font-style: italic;
     font-size: 16px;
 }
+
+/* ranking.html */
+
+[page="ranking"] {
+    background-image: url("../imagenes/ranking.jpg") !important;
+}
+
+.contenedor__filtros{
+    height: 50px;
+}
+
+.filtros__form{
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 870px;
+    padding: 10px;
+    gap: 30px;
+    margin-left: 30px;
+    margin-bottom: 150px;
+}
+
+.btn__filtros{
+    padding: 10px 8px;
+    font-size: 20px;
+    right: -28%;
+    position: absolute;
+    font-family: "sofachrome", sans-serif;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 25px;
+    background-color: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid #00000000;
+}
+.btn__filtros::before {
+    content: " ";
+    border-bottom: 4px #000000 solid;
+    position: absolute;
+    width: 0;
+    top: 40px;
+    left: 7px;
+    transition: all 0.3s ease;
+}
+
+.btn__filtros:hover::before {
+    width: 85%;
+}
+
+.btn__filtros:hover {
+    scale: 1.1;
+}
+[tabla="ranking"]{
+    max-width: fit-content!important;
+}
+/* Guili si ves esto TKM *-* <3 */

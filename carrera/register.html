@@ -9,15 +9,13 @@
     <!-- SweetAlert2 CDN -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://use.typekit.net/yaz3yra.css" />
-
 </head>
 
 <body>
-    <img class="img__fondo" src="./imagenes/carrera.jpg" alt="carrera" />
     <header>
         <h3>V.1.0.0</h3>
         <a href="./index.html" class="btn__volver">
-            <img src="./imagenes/huella.png" alt="">
+            <img src="./imagenes/huella.png" alt="" />
             Volver
         </a>
     </header>
@@ -37,37 +35,41 @@
     <main>
         <h1>Registro de Corredores</h1>
         <form id="runnerForm">
-            <div class="flex">
-                <label for="numero">Número de Corredor</label>
-                <input type="number" id="numero" name="numero" required />
-            </div>
-            <div class="flex">
-                <label for="nombre">Nombre</label>
-                <input type="text" id="nombre" name="nombre" required />
-            </div>
-            <div class="flex">
-                <label for="nombre">Apellido</label>
-                <input type="text" id="apellido" name="apellido" required />
-            </div>
-            <div class="flex">
-                <label for="edad">Edad</label>
-                <input type="number" id="edad" name="edad" required />
-            </div>
-            <div class="flex">
-                <label for="sexo">Sexo</label>
-                <select id="sexo" name="sexo" required>
-                    <option value="F">F</option>
-                    <option value="M">M</option>
-                </select>
-            </div>
-            <div class="flex">
-                <label for="distancia">Distancia</label>
-                <select id="distancia" name="distancia" required>
-                    <option value="5">5 km</option>
-                    <option value="10">10 km</option>
-                    <option value="21">21 km</option>
-                </select>
-            </div>
+            <article>
+                <div class="flex">
+                    <label for="numero">Número de Corredor</label>
+                    <input type="number" id="numero" name="numero" required />
+                </div>
+                <div class="flex">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" required />
+                </div>
+                <div class="flex">
+                    <label for="nombre">Apellido</label>
+                    <input type="text" id="apellido" name="apellido" required />
+                </div>
+            </article>
+            <article>
+                <div class="flex">
+                    <label for="edad">Edad</label>
+                    <input type="number" id="edad" name="edad" required />
+                </div>
+                <div class="flex">
+                    <label for="sexo">Sexo</label>
+                    <select id="sexo" name="sexo" required>
+                        <option value="F">F</option>
+                        <option value="M">M</option>
+                    </select>
+                </div>
+                <div class="flex">
+                    <label for="distancia">Distancia</label>
+                    <select id="distancia" name="distancia" required>
+                        <option value="5">5 km</option>
+                        <option value="10">10 km</option>
+                        <option value="21">21 km</option>
+                    </select>
+                </div>
+            </article>
             <button type="submit" id="submitBtn">Registrar</button>
         </form>
     </main>
@@ -75,15 +77,14 @@
     <!-- JavaScript para manejar el envío del formulario -->
     <script src="./js/main.js"></script>
     <script>
-        document.querySelectorAll('input[type="number"]').forEach(input => {
-  input.addEventListener('keydown', function(event) {
-    // Prevenir el incremento/decremento con las teclas de flechas arriba/abajo
-    if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
-      event.preventDefault();
-    }
-  });
-});
-
+        document.querySelectorAll('input[type="number"]').forEach((input) => {
+            input.addEventListener("keydown", function (event) {
+                // Prevenir el incremento/decremento con las teclas de flechas arriba/abajo
+                if (event.key === "ArrowUp" || event.key === "ArrowDown") {
+                    event.preventDefault();
+                }
+            });
+        });
     </script>
 </body>
 

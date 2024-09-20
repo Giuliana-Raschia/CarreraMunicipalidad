@@ -14,6 +14,8 @@ body {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    scroll-behavior: smooth;
+
 }
 
 .img__fondo {
@@ -27,6 +29,8 @@ body {
     background-position: center;
     background-repeat: no-repeat;
 }
+
+
 
 .img__fondo::before {
     content: "";
@@ -83,7 +87,7 @@ body {
 
 .cronoButton {
     height: 40px;
-    width:110px; 
+    width: 110px;
     font-family: "darkmode-on", sans-serif;
     font-weight: 600;
     font-size: 16px;
@@ -92,8 +96,8 @@ body {
     color: #fff;
     cursor: pointer;
     border-radius: 8px;
-    
 }
+
 .contenedor__tablaTiempo {
     position: absolute;
     background-color: #fff;
@@ -101,14 +105,14 @@ body {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     max-width: 1000px;
-    height: 400px; /* Alto fijo de 600px */
+    height: 400px;
+    /* Alto fijo de 600px */
     width: 100%;
     left: 0;
     top: 150px;
-    transform: translate(20%, 0%); 
+    transform: translate(20%, 0%);
     overflow: auto;
     margin-top: 50px;
-    
 }
 
 article {
@@ -139,45 +143,6 @@ span {
 }
 
 
-.contenedor__tabla {
-    position: absolute;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 1000px;
-    height: 400px; /* Alto fijo de 600px */
-    width: 100%;
-    left: 0;
-    top: 150px;
-    transform: translate(20%, 0%); 
-    overflow: auto;
-}
-
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-table,
-th,
-td {
-    border: 1px solid black;
-}
-
-th,
-td {
-    padding: 8px;
-    text-align: left;
-}
-
-th {
-    background-color: #f2f2f2;
-}
-
-
-
 .btn__volver {
     display: flex;
     align-items: center;
@@ -197,15 +162,11 @@ th {
     font-weight: bold;
     font-style: italic;
     font-size: 20px;
-    text-shadow:
-        3px 3px 0 #000,
-      -1px -1px 0 #000,  
-       1px -1px 0 #000,
-       -1px 1px 0 #000,
-        1px 1px 0 #000;
+    text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000,
+        -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
-.btn__volver > img{
+.btn__volver>img {
     rotate: 90deg;
     height: 200px;
     object-fit: contain;
@@ -282,7 +243,7 @@ h3 {
     cursor: pointer;
     text-align: start;
     height: 20%;
-    width: 100%;
+    width: 70%;
     padding: 20px 10px;
     font-size: 20px;
     text-decoration: none;
@@ -294,7 +255,6 @@ h3 {
     background-color: #ffffff00;
     position: relative;
 }
-
 
 .button::before {
     content: " ";
@@ -371,20 +331,27 @@ p {
     color: #666;
 }
 
-form {
+/* form {
+    flex-wrap: wrap;
     display: flex;
-    flex-direction: column;
-    gap: 10px; /* Añade un poco de espacio entre los elementos */
+    flex-direction: row;
+    gap: 10px;
     padding: 10px;
-    width: 300px; /* Ajusta el tamaño del formulario */
-    margin-left: 40px; /* Alinea el formulario a la izquierda */
-    position: relative; /* Asegura que el formulario no afecte a otros elementos */
+    width: 100%; 
+    margin-left: 40px;
+    position: relative;
 }
 
+form > article {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+} */
+
 .ranking__button {
-    width: 100%; /* Igual al ancho de los selects */
-    padding: 10px; /* Ajustar el relleno para que sea similar a los selects */
-    margin-left: 20px; /* Igual al margen de los selects */
+    width: 100%;
+    padding: 10px;
+    margin-left: 20px;
     font-family: "darkmode-on", sans-serif;
     font-weight: 600;
     font-size: 16px;
@@ -392,7 +359,7 @@ form {
     background-color: #007bff;
     color: #fff;
     cursor: pointer;
-    height: 65px; /* Ajuste igual al select */
+    height: 65px;
 }
 
 .ranking__button:hover {
@@ -406,28 +373,36 @@ form {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     max-width: 1000px;
-    height: 400px; /* Ajusta el alto según necesites */
+    height: 400px;
     width: 100%;
-    left: 25%; /* Ajusta este valor para mover el contenedor */
+    left: 25%;
     top: 150px;
     transform: translate(0%, 0%);
     overflow: auto;
 }
 
+/* register.html */
 
-/* Register.htmml */
-
-#runnerForm{
+#runnerForm {
     position: relative;
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
-    flex-direction: column;
-    width: 60%;
+    width: 90%;
+    padding: 10px;
+    gap: 30px;
+    margin-left: 30px;
+    margin-bottom: 150px;
 }
 
-.flex{
-    width: 60%;
+#runnerForm>article {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+}
+
+.flex {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -442,7 +417,7 @@ label {
     font-style: italic;
     bottom: 22%;
     font-size: 11px;
-    margin-bottom: 5px; 
+    margin-bottom: 5px;
     margin-left: 30px;
 }
 
@@ -464,14 +439,121 @@ select {
 
 /* Ocultar las flechas y el control nativo en navegadores modernos */
 input[type="number"] {
-    -moz-appearance: textfield; /* Firefox */
-    appearance: textfield; /* Otros navegadores */
-  }
-  
-  /* Opcional: Estilo para el borde del input */
-  input[type="number"]::-webkit-inner-spin-button,
-  input[type="number"]::-webkit-outer-spin-button {
+    -moz-appearance: textfield;
+    /* Firefox */
+    appearance: textfield;
+    /* Otros navegadores */
+}
+
+/* Opcional: Estilo para el borde del input */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
-  }
-  
+}
+
+#submitBtn {
+    padding: 10px 8px;
+    font-size: 20px;
+    bottom: -20%;
+    position: absolute;
+    font-family: "sofachrome", sans-serif;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 25px;
+    background-color: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid #00000000;
+}
+
+#submitBtn::before {
+    content: " ";
+    border-bottom: 4px #000000 solid;
+    position: absolute;
+    width: 0;
+    top: 40px;
+    left: 7px;
+    transition: all 0.3s ease;
+}
+
+#submitBtn:hover::before {
+    width: 85%;
+}
+
+#submitBtn:hover {
+    scale: 1.1;
+}
+
+/* listacorredores.html */
+
+[page="listacorredores"] {
+    background-image: url("../imagenes/lista.jpg") !important;
+}
+
+.contenedor__tabla {
+    background-color: transparent;
+    border-radius: 8px;
+    max-width: 1000px;
+    height: 500px;
+    width: 100%;
+    overflow: auto;
+    margin-left: 40px;
+    margin-bottom: 110px;
+    padding-top: 20px;
+}
+
+.contenedor__tabla::-webkit-scrollbar {
+    width: 11px;
+}
+
+.contenedor__tabla::-webkit-scrollbar-track {
+    background: #000;
+}
+
+.contenedor__tabla::-webkit-scrollbar-thumb {
+    background-color: #fff;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table,
+th,
+td {
+    border: 1px solid #000;
+}
+
+th,
+td {
+    padding: 8px;
+    text-align: left;
+}
+
+tbody>:hover{
+    background-color: #000000;
+    color: #fff;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tbody > tr{
+    font-family: "darkmode-on", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 18px;
+    transition: 0.2s ease all;
+    background-color: #fff;
+
+}
+
+thead > tr{
+    font-family: "sofachrome", sans-serif;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 16px;
+}

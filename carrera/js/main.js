@@ -5,15 +5,6 @@ document.getElementById('runnerForm').addEventListener('submit', async function(
     const submitBtn = document.getElementById('submitBtn');
     submitBtn.disabled = true;
 
-    // Mostrar alerta de proceso en curso
-    Swal.fire({
-        title: 'Procesando...',
-        text: 'Enviando los datos. Por favor, espere.',
-        icon: 'info',
-        allowOutsideClick: false,
-        showConfirmButton: false
-    });
-
     // Capturar los valores de los inputs
     const numero = document.getElementById('numero').value;
     const nombre = document.getElementById('nombre').value;
@@ -56,44 +47,43 @@ document.getElementById('runnerForm').addEventListener('submit', async function(
         // Parsear la respuesta JSON
         const result = await response.json();
 
-        // Cerrar la alerta de proceso
-        Swal.close();
-
         if (result.status === 'success') {
-            Swal.fire({
-                title: 'Éxito',
+            Toastify({
                 text: result.message,
-                icon: 'success'
-            });
+                duration: 3000,
+                close: true,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "#4caf50",
+            }).showToast();
         } else {
             // Obtener el mensaje de error basado en el código
             const errorMessage = errorMessages[result.code] || 'Error desconocido.';
-            Swal.fire({
-                title: 'Error',
+            Toastify({
                 text: `${errorMessage} (Código de error: ${result.code})`,
-                icon: 'error'
-            });
+                duration: 3000,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "red", // Color rojo para errores
+                close: true,
+            }).showToast();
         }
     } catch (error) {
         console.error('Error al enviar los datos:', error);
 
-        Swal.fire({
-            title: 'Error',
+        Toastify({
             text: 'Hubo un problema al enviar los datos. Por favor, inténtelo de nuevo.',
-            icon: 'error'
-        });
+            duration: 3000,
+            gravity: "top",
+            position: "right",
+            backgroundColor: "red",
+            close: true,
+        }).showToast();
     } finally {
         // Habilitar el botón de enviar nuevamente
         submitBtn.disabled = false;
     }
 });
-
-// RANKING
-const sexoSelect = document.getElementById('sexo');
-const categoriaSelect = document.getElementById('categoria');
-const edadMinInput = document.getElementById('edad_min');
-const edadMaxInput = document.getElementById('edad_max');
-const rankingTable = document.getElementById('ranking-table');
 
 // Función para cargar el ranking
 async function loadRanking() {
@@ -116,13 +106,26 @@ async function loadRanking() {
 
         const data = await response.json();
         displayRanking(data);
+
+        Toastify({
+            text: 'Ranking cargado exitosamente',
+            duration: 3000,
+            gravity: "top",
+            position: "right",
+            backgroundColor: "green",
+            close: true,
+        }).showToast();
     } catch (error) {
         console.error('Error al cargar el ranking:', error);
-        Swal.fire({
-            title: 'Error',
+
+        Toastify({
             text: 'Hubo un problema al cargar el ranking. Por favor, inténtelo de nuevo.',
-            icon: 'error'
-        });
+            duration: 3000,
+            gravity: "top",
+            position: "right",
+            backgroundColor: "red",
+            close: true,
+        }).showToast();
     }
 }
 
@@ -139,21 +142,12 @@ function displayRanking(data) {
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>${index + 1}</td>
-            <td>${item['Número de Corredor']}</td>
-            <td>${item['Nombre Completo']}</td>
-            <td>${item['Edad']}</td>
-            <td>${item['Categoría']}</td>
-            <td>${item['Tiempo']}</td>
+            <td>${item.nombre}</td>
+            <td>${item.apellido}</td>
+            <td>${item.distancia} km</td>
+            <td>${item.tiempo}</td>
+            <td>${item.sexo}</td>
         `;
         rankingTable.appendChild(row);
     });
 }
-
-// Evento para cuando se envíe el formulario de filtros
-document.getElementById('filter-form').addEventListener('submit', function (event) {
-    event.preventDefault(); // Evitar el envío del formulario
-    loadRanking();
-});
-
-// Cargar el ranking por defecto al cargar la página
-loadRanking();

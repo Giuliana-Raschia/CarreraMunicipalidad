@@ -5,10 +5,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Datos de Corredores</title>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
     <link rel="stylesheet" href="./style/style.css" />
     <link rel="stylesheet" href="https://use.typekit.net/yaz3yra.css" />
-
 </head>
 
 <body>
@@ -22,14 +22,11 @@
     <div page="listacorredores" class="img__fondo"></div>
     <a class="direc__deportes" href="https://roqueperez.gob.ar/tags/deportes" target="_blank" rel="noopener noreferrer">
         <img src="./imagenes/DeportesTransparente.png" alt="Roque Pérez Deportes" />
-        <!-- Cambié Pérez para usar el acento -->
     </a>
-    <a class="direc__deportes" direc="2" href="https://fundacionsonrie.org.ar/" target="_blank"
-        rel="noopener noreferrer">
+    <a class="direc__deportes" direc="2" href="https://fundacionsonrie.org.ar/" target="_blank" rel="noopener noreferrer">
         <img src="./imagenes/logo.svg" alt="Fundación Sonríe" />
     </a>
-    <a class="direc__deportes" direc="3" href="https://www.instagram.com/sumatexromi" target="_blank"
-        rel="noopener noreferrer">
+    <a class="direc__deportes" direc="3" href="https://www.instagram.com/sumatexromi" target="_blank" rel="noopener noreferrer">
         <img src="./imagenes/Romi.jpeg" alt="sumate x romi" />
     </a>
     <h1>Datos de Corredores</h1>
@@ -42,6 +39,7 @@
             <tbody id="tableBody"></tbody>
         </table>
     </section>
+
     <script>
         async function fetchCorredores() {
             try {
@@ -77,27 +75,36 @@
                             tableBody.appendChild(tr);
                         });
                     } else {
+                        // Mostrar mensaje cuando no hay datos disponibles
                         const tr = document.createElement("tr");
                         const td = document.createElement("td");
-                        td.colSpan = headers.length;
-                        td.textContent = "No hay datos disponibles";
+                        td.colSpan = 5; // Ajustar según la cantidad de columnas que esperas
+                        td.textContent = "No hay datos para mostrar";
                         tr.appendChild(td);
                         tableBody.appendChild(tr);
                     }
                 } else {
-                    Swal.fire({
-                        title: "Error",
+                    // Mostrar notificación de error con Toastify
+                    Toastify({
                         text: "Error al cargar los datos.",
-                        icon: "error",
-                    });
+                        duration: 3000,
+                        gravity: "top", // Mostrar arriba
+                        position: "right", // Posición derecha
+                        backgroundColor: "#f44336", // Rojo para error
+                        className: "error",
+                    }).showToast();
                 }
             } catch (error) {
                 console.error("Error al cargar los datos:", error);
-                Swal.fire({
-                    title: "Error",
+                // Mostrar notificación de error con Toastify
+                Toastify({
                     text: "Hubo un problema al cargar los datos.",
-                    icon: "error",
-                });
+                    duration: 3000,
+                    gravity: "top", // Mostrar arriba
+                    position: "right", // Posición derecha
+                    backgroundColor: "#f44336", // Rojo para error
+                    className: "error",
+                }).showToast();
             }
         }
 
